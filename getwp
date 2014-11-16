@@ -1,0 +1,41 @@
+#! /usr/bin/env python
+import argparse
+import feedparser
+import json
+import sys
+
+
+def main(args):
+    parser = argparse.ArgumentParser(
+        description="Retrieve worpress posts.",
+    )
+
+    parser.add_argument(
+        'target',
+        help='Target user to pull public data from.',
+    )
+
+    options = parser.parse_args(args)
+
+    print(json.dumps(get_posts(options.target)))
+
+
+def get_posts(url):
+    full_url = '%s/feed/' % url
+    wp = feedparser.parse(full_url)
+
+    entries = []
+    for entry in wp.entries:
+        if 'content' in entry.keys():
+            content = entry['content']
+            if not isinstance(content, list):
+                content = [entry['content']]
+            else:
+                content = entry['content']
+            for post in content:
+                entries.append(post['value'])
+
+    return entries
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
