@@ -31,7 +31,13 @@ def main(args):
                 all_sentences[sentence] = []
             all_sentences[sentence].append(pos)
 
-    print(all_sentences)
+    # Get the list of suspect terms
+    with open('suspect') as fh:
+        suspect_terms = fh.readlines()
+
+    suspect_terms = [term.strip() for term in suspect_terms]
+
+    print(suspect_terms)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
