@@ -1,0 +1,37 @@
+#! /usr/bin/env python
+import argparse
+import json
+import nltk
+import sys
+
+def main(args):
+    parser = argparse.ArgumentParser(
+        description="Frame someone as a terrorist.",
+    )
+
+    # TODO: Make it get data from stdin if this is not supplied
+    parser.add_argument(
+        '-s', '--source',
+        help='Get data from this file.',
+        dest='source',
+        required=True,
+    )
+
+    options = parser.parse_args(args)
+
+    with open(options.source) as fh:
+        data = json.load(fh)
+
+    all_sentences = {}
+    for pos in range(0,len(data)):
+        sentences = nltk.sent_tokenize(data[pos])
+        sentences = [sent.strip() for sent in sentences]
+        for sentence in sentences:
+            if sentence not in all_sentences:
+                all_sentences[sentence] = []
+            all_sentences[sentence].append(pos)
+
+    print(all_sentences)
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
