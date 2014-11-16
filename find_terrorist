@@ -37,7 +37,10 @@ def main(args):
 
     suspect_terms = [term.strip() for term in suspect_terms]
 
-    print(suspect_terms)
+    for sentence in all_sentences.keys():
+        for term in suspect_terms:
+            if term in sentence.lower():
+                print(sentence)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
