@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 import argparse
+from BeautifulSoup import BeautifulSoup
 import feedparser
 import json
 import sys
@@ -33,7 +34,10 @@ def get_posts(url):
             else:
                 content = entry['content']
             for post in content:
-                entries.append(post['value'])
+                post = post['value']
+                soup = BeautifulSoup(post)
+                post = ''.join(soup.findAll(text=True))
+                entries.append(post)
 
     return entries
 
