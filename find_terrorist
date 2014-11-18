@@ -41,6 +41,7 @@ def main(args):
         for term in suspect_terms:
             if term in sentence.lower():
                 print(sentence)
+                print('-----')
 
 if __name__ == '__main__':
     main(sys.argv[1:])
