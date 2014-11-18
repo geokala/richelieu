@@ -1,17 +1,19 @@
 richelieu
 =========
-Named after Cardinal Richelieu
-https://en.wikipedia.org/wiki/Cardinal_Richelieu
+Named after Cardinal Richelieu: https://en.wikipedia.org/wiki/Cardinal_Richelieu
 
-To run:
-1. Run getwp with the URL of a wordpress blog, redirecting the output to file.
-e.g.
+Usage
+-----
+1. Run getwp with the URL of a wordpress blog, redirecting the output to file.  
+e.g.  
 ./getwp http://wpblog.example.com/ > wpblog.data
 
-2. Run find_terrorist on a data file to try to frame them. Note that at the moment it just finds sentences containing keywords.
-e.g.
+2. Run find_terrorist on a data file to try to frame them. Note that at the moment it just finds sentences containing keywords.  
+e.g.  
 ./find_terrorist --source wpblog.data
 
+To-do
+-----
 It is intended to provide more 'get' types (e.g. twitter, livejournal).
 
 It is also intended to improve the find_terrorist program to:
