@@ -4,6 +4,7 @@ from BeautifulSoup import BeautifulSoup, BeautifulStoneSoup
 import feedparser
 import json
 import sys
+from pprint import pprint
 
 
 def main(args):
@@ -39,7 +40,7 @@ def get_posts(url):
                     post,
                     convertEntities=BeautifulSoup.HTML_ENTITIES,
                 )
-                post = ''.join(soup.findAll(text=True))
+                post = ''.join(soup.findAll(text=True)).replace('\n', '')
                 entries.append(post)
 
     return entries
